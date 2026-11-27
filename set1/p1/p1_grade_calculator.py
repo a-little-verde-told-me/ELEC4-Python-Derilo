@@ -105,8 +105,12 @@ def main():
         elif choice == "2":
             display_results(grades) 
         elif choice == "0":
-            print("closing calculator, byeeee!")
+            print("closing calculator.... byeeee!")
             break
         else:
             print("invalid input, please type either 1, 2, or 0")
 main()
+
+
+# GLOBAL VS LOCAL VARIABLE
+# Global variables are variables that are initialised outside a function, which makes them accessible to every functions. For example, I have a global variable called passing_average, so the functions in this code can read it, such as status_grade() and display_result(). While local variables are created inside a function and only work inside that function. For example, the total inside the average function is a local variable, so the other functions outside the average function cant use it. I made passing_average global to let the other functions that needs it access it, while I kept other variables local, since it would be unnecessary to make them global when other functions dont need to use them.
