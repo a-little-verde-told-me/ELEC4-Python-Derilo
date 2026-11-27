@@ -14,6 +14,18 @@ def divide_numbers(): # this will divide two numbers without crashing
     except ZeroDivisionError: # when the user entered 0 on the second number
         print("\nyou cannot divide by zero.")
 
+def open_file(): # this will show the contents of a file without crashing
+    file_name = input("enter the file name to open: ").strip()
+
+    try:
+        with open(file_name, "r") as file:
+            contents = file.read()
+        print(f"\n----- contents of {file_name} -----")
+        print(contents)
+        print("-----------------------------------")
+    except FileNotFoundError: # when the entered file does not exist
+        print(f'the file "{file_name}" was not found.')
+
 def menu_options():
     print("\n========== SAFE MENU PROGRAM ==========")
     print("1. Divide two numbers")
@@ -30,7 +42,7 @@ def main():
         if choice == "1":
             divide_numbers()
         elif choice == "2":
-            print("open a file: ")
+            open_file()
         elif choice == "0":
             print("\nclosing safe menu program.... byeeee!\n")
             break
