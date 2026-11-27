@@ -104,3 +104,6 @@ def main():
             print("invalid input, please type 0, 1, 2, 3, or 4")
 
 main()
+
+# LIST VS SET
+# Lists are ordered collections that allow duplicate items and can be indexed or sorted, while sets only store unique values and check if an item exists right away. For example, I have a list called students to keep the formatted names so functions like display_students() and search_student() can sort, number, and search through them. While sets do not keep order and reject duplicates automatically. For example, the format_names set stores lowercase names so add_student() can quickly check if someone like "Juan Cruz" or "juan cruz" is already there. I used a list to keep the display order and formatted names, while I used a set to block duplicates cleanly, since it would be messy and slower to check duplicates only through the list.
