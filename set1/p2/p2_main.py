@@ -4,6 +4,8 @@
 # Date: November 27, 2026
 
 import student_utils #this will import/bring the student_utils here
+from student_utils import highest_grade, lowest_grade # this bring in only these functions
+from datetime import datetime # I used for the report time
 
 # user input functions starts here
 def valid_grade(question): # this will validate the enteredd grade
@@ -47,13 +49,19 @@ def enter_grades():
 
 # output functions starts here
 def display_report(grades): # this prints the result/output
-    average_grade = student_utils.compute_average(grades)
+    average_grade = student_utils.compute_average(grades) # this one needs the module name
+    highest = highest_grade(grades) # i am able to import this function with no module name needed
+    lowest = lowest_grade(grades) # this function also
     status = student_utils.status_grade(grades)
+    now = datetime.now() # to get the current date and time
 
     print("\n=============== GRADE REPORT ====================\n")
-    print(f"grades entered : {grades}")
-    print(f"average        : {average_grade:.2f}")
-    print(f"status         : {status} (the passing average is {student_utils.passing_average})")
+    print(f"report generated on : {now.strftime('%B %d, %Y %I:%M %p')}")
+    print(f"grades entered      : {grades}")
+    print(f"average             : {average_grade:.2f}")
+    print(f"highest grade       : {highest:.2f}")
+    print(f"lowest grade        : {lowest:.2f}")
+    print(f"status              : {status} (the passing average is {student_utils.passing_average})")
     print("\n===================================================")
 # output functions ends here
 
