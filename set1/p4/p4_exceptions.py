@@ -8,11 +8,14 @@ def divide_numbers(): # this will divide two numbers without crashing
         first = float(input("\nenter the first number: "))
         second = float(input("enter the second number: "))
         result = first / second
-        print(f"\n{first:.2f} / {second:.2f} = {result:.2f}")
     except ValueError: # when the user entered letters instead of a number
-        print("\ninvalid input, please type numbers only.")
+        print("\n!!!!! invalid input, please type numbers only. !!!!!")
     except ZeroDivisionError: # when the user entered 0 on the second number
-        print("\nyou cannot divide by zero.")
+        print("\n!!!!! you cannot divide by zero. !!!!!")
+    else: # runs only when nothing went wrong
+        print(f"\n{first:.2f} / {second:.2f} = {result:.2f}")
+    finally: # runs every time, whether there was an error or not
+        print("\ndivision finished.")
 
 def open_file(): # this will show the contents of a file without crashing
     file_name = input("enter the file name to open: ").strip()
@@ -20,11 +23,18 @@ def open_file(): # this will show the contents of a file without crashing
     try:
         with open(file_name, "r") as file:
             contents = file.read()
+    except FileNotFoundError: # when the entered file does not exist
+        print(f'\n!!!!! the file "{file_name}" was not found. !!!!!')
+    except (PermissionError, IsADirectoryError): # when it is a folder or access is denied
+        print(f'\n!!!!! "{file_name}" cannot be opened, it is a folder or you have no permission. !!!!!')
+    except UnicodeDecodeError: # when it is not a text file, like a picture
+        print(f'\n!!!!! "{file_name}" is not a text file, so it cannot be shown. !!!!!')
+    else: # runs only when the file was read without errors
         print(f"\n----- contents of {file_name} -----")
         print(contents)
-        print("-----------------------------------")
-    except FileNotFoundError: # when the entered file does not exist
-        print(f'the file "{file_name}" was not found.')
+        print("--------------------------------------")
+    finally: # runs every time, whether there was an error or not
+        print("\nopen file finished.")
 
 def menu_options():
     print("\n========== SAFE MENU PROGRAM ==========")
@@ -47,6 +57,6 @@ def main():
             print("\nclosing safe menu program.... byeeee!\n")
             break
         else:
-            print("invalid input, please type 0, 1, or 2")
+            print("\n!!!!! invalid input, please type 0, 1, or 2 !!!!!")
 
 main()
