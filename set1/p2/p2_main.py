@@ -1,0 +1,66 @@
+# Name: Ian Gabriel S. Derilo
+# Section: IV-BSIT-B
+# Activity: P2 - Custom Module student_utils
+# Date: November 27, 2026
+
+import student_utils #this will import/bring the student_utils here
+
+# user input functions starts here
+def valid_grade(question): # this will validate the enteredd grade
+    while True:
+        try:
+            grade = float(input(question))
+        except ValueError:
+            print("invalid input, please type a valid grade.")
+            continue
+
+        if 0 <= grade <= 100:
+            return grade
+        print("grade you must input in the field are 0 and 100.")
+
+
+def grade_count(): # ask how many grades the user wants to input
+    while True:
+        try:
+            count = int(input("how many grades do you want to enter? "))
+        except ValueError:
+            print("invalid input, type whole number only")
+            continue
+
+        if count >= 1:
+            return count
+        print("enter at least 1 grade.")
+
+
+def enter_grades(): 
+    count = grade_count()
+    grades = []
+
+    for number in range(1, count + 1):
+        grade = valid_grade(f"enter grade {number}: ")
+        grades.append(grade)
+
+    # print(f"{count} grade(s) saved.")
+    return grades
+# user input functions ends here
+
+
+# output functions starts here
+def display_report(grades): # this prints the result/output
+    average_grade = student_utils.compute_average(grades)
+    status = student_utils.status_grade(grades)
+
+    print("\n=============== GRADE REPORT ====================\n")
+    print(f"grades entered : {grades}")
+    print(f"average        : {average_grade:.2f}")
+    print(f"status         : {status} (the passing average is {student_utils.passing_average})")
+    print("\n===================================================")
+# output functions ends here
+
+
+# main program
+def main():
+    grades = enter_grades()
+    display_report(grades)
+
+main()
