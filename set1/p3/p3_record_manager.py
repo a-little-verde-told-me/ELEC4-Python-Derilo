@@ -19,6 +19,25 @@ def add_student(students): # add a student to the list
     students.append(name)
     print(f"{name} was added.")
 
+def search_student(students): # find students using a whole or partial name
+    keyword = input("enter a name or part of a name to search: ").strip().lower()
+
+    if keyword == "":
+        print("please type something to search.")
+        return
+
+    matches = []
+    for student in sorted(students):
+        if keyword in student.lower(): 
+            matches.append(student)
+
+    if not matches:
+        print(f'no student found for "{keyword}".')
+        return
+
+    print(f"\nfound {len(matches)} student(s):")
+    for number, student in enumerate(matches, start=1):
+        print(f"{number}. {student}")
 
 def display_students(students): # show all students in alphabetical order
     if not students:
@@ -52,7 +71,7 @@ def main():
         elif choice == "2":
             print("remove a student: ")
         elif choice == "3":
-            print("search a student: ")
+            search_student(students)
         elif choice == "4":
             display_students(students)
         elif choice == "0":
