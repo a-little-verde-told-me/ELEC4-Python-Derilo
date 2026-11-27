@@ -17,3 +17,10 @@ def status_grade(grades): #determine the pass/fail status
         return "passed!"
     return "failed:("
 # compute functions ends here
+
+def highest_grade(grades): # to get the highest grade
+    return max(grades)  
+
+
+def lowest_grade(grades): # to get the lowest grade
+    return min(grades)  
