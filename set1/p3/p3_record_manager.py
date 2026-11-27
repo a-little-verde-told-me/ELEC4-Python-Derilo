@@ -9,14 +9,20 @@ def format_name(name): # this function will remove extra spaces and make each wo
 # helper functions ends here
 
 # record functions starts here
-def add_student(students): # add a student to the list
+def add_student(students, added_names): # add a student to the list and prevent case-insensitive duplicates
     name = format_name(input("enter the student name to add: "))
 
     if name == "":
         print("the name cannot be empty.")
         return
 
+    name_key = name.lower()
+    if name_key in added_names:
+        print(f"{name} is already in the list.")
+        return
+
     students.append(name)
+    added_names.add(name_key)
     print(f"{name} was added.")
 
 def search_student(students): # find students using a whole or partial name
@@ -28,7 +34,7 @@ def search_student(students): # find students using a whole or partial name
 
     matches = []
     for student in sorted(students):
-        if keyword in student.lower(): 
+        if keyword in student.lower():
             matches.append(student)
 
     if not matches:
@@ -38,6 +44,22 @@ def search_student(students): # find students using a whole or partial name
     print(f"\nfound {len(matches)} student(s):")
     for number, student in enumerate(matches, start=1):
         print(f"{number}. {student}")
+
+def remove_student(students, added_names): # remove a student from the list and the set
+    if not students:
+        print("the list is empty, so there is nothing to remove.")
+        return
+
+    name = format_name(input("enter the student name to remove: "))
+    name_key = name.lower()
+
+    if name_key not in added_names:
+        print(f"{name} is not in the list.")
+        return
+
+    students.remove(name)
+    added_names.remove(name_key)
+    print(f"{name} was removed.")
 
 def display_students(students): # show all students in alphabetical order
     if not students:
@@ -63,13 +85,14 @@ def menu_options():
 # main program
 def main():
     students = []
+    added_names = set()
     while True:
         menu_options()
         choice = input("choose an option from 0 to 4: ").strip()
         if choice == "1":
-            add_student(students)
+            add_student(students, added_names)
         elif choice == "2":
-            print("remove a student: ")
+            remove_student(students, added_names)
         elif choice == "3":
             search_student(students)
         elif choice == "4":
@@ -79,4 +102,5 @@ def main():
             break
         else:
             print("invalid input, please type 0, 1, 2, 3, or 4")
+
 main()
