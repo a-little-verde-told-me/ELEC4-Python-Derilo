@@ -1,9 +1,9 @@
 # ELEC 4 – Python Programming
 
-**Name:** Ian Gabriel S. Derilo
-**Section:** IV-BSIT-B
-**Course:** ELEC 4 – Python Programming
-**Instructor:** Carl Gustaf Patrik B. Ferrer
+- **Name:** Ian Gabriel S. Derilo
+- **Section:** IV-BSIT-B
+- **Course:** ELEC 4 – Python Programming
+- **Instructor:** Carl Gustaf Patrik B. Ferrer
 
 ## Activities
 
